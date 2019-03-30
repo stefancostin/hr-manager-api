@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Team extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'competence_center_id',
         'code ',
@@ -13,11 +16,11 @@ class Team extends Model
     ];
 
     /**
-     * Get Users assigned to current Team
+     * Get Employees assigned to current Team
      * (One-to-Many)
      */
-    public function users() {
-        return $this->hasMany('App\User');
+    public function employees() {
+        return $this->hasMany('App\Employee');
     }
 
     /**

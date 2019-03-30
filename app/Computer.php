@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Computer extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
-        'user_id',
+        'employee_id',
         'code',
         'operating_system',
         'cpu',
@@ -16,10 +19,10 @@ class Computer extends Model
     ];
 
     /**
-     * Get User that owns current Computer
+     * Get Employee that owns current Computer
      * (One-to-One)
      */
-    public function user() {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+    public function Employee() {
+        return $this->belongsTo('App\Employee', 'employee_id', 'id');
     }
 }

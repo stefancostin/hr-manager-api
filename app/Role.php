@@ -3,19 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'code',
         'name'
     ];
 
     /**
-     * Get Users for current Role
+     * Get Employees for current Role
      * (One-to-Many)
      */
-    public function users() {
-        return $this->hasMany('App\User');
+    public function employees() {
+        return $this->hasMany('App\Employee');
     }
 }

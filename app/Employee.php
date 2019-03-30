@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class Employee extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'role_id',
         'team_id',
@@ -16,7 +19,7 @@ class User extends Model
     ];
 
     /**
-     * Get Computer that belongs to current User
+     * Get Computer that belongs to current Employee
      * (One-to-One)
      */
     public function computer() {
@@ -24,15 +27,15 @@ class User extends Model
     }
 
     /**
-     * Get Role that belongs to current User
+     * Get Role that belongs to current Employee
      * (One-to-Many)
      */
     public function role() {
-        return $this->belongsTo('App\User', 'role_id', 'id');
+        return $this->belongsTo('App\Role', 'role_id', 'id');
     }
 
     /**
-     * Get Team that belongs to current User
+     * Get Team that belongs to current Employee
      * (One-to-Many)
      */
     public function team() {

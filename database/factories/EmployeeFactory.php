@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Employee;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -19,9 +19,12 @@ use Faker\Generator as Faker;
  * Out of Date
  * Since adding unique() sql constraints,
  * using factory w/ faker causes errors.
+ *
+ * Changing to manual seeding in order to
+ * have better control over dataset.
  */
 
-// $factory->define(User::class, function (Faker $faker) {
+// $factory->define(Employee::class, function (Faker $faker) {
 //     return [
 //         'role_id' => $faker->numberBetween($min = 1, $max = 5),
 //         'team_id' => $faker->numberBetween($min = 1, $max = 5),

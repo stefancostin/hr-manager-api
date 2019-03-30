@@ -18,6 +18,7 @@ class CreateCompetenceCentersTable extends Migration
             $table->string('code')->unique();
             $table->string('city');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

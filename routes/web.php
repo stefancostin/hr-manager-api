@@ -6,7 +6,7 @@ use App\Project;
 use App\ProjectTeam;
 use App\Role;
 use App\Team;
-use App\User;
+use App\Employee;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,19 +22,15 @@ use App\User;
 Route::get('/', function () {
     return view('welcome');
 
-    // $user = new User();
-    // $user->name = 'toma';
-    // $user->email = 'toma@mail.com';
-    // $user->password = 'secret';
-    // $user->save();
+    // $employee = new Employee();
+    // $employee->name = 'toma';
+    // $employee->email = 'toma@mail.com';
+    // $employee->password = 'secret';
+    // $employee->save();
 
-    $users = User::all();
-    print_r($users->toArray());
+    $employees = Employee::all();
+    print_r($employees->toArray());
     die;
-});
-
-Route::get('/contact', function () {
-    return view('contact');
 });
 
 Route::post('/factory', function () {
@@ -56,14 +52,14 @@ Route::get('/factory', function () {
     $projectTeamPivot = ProjectTeam::all();
     $roles = Role::all();
     $teams = Team::all();
-    $users = User::all();
+    $employees = Employee::all();
 
     // Display Data
     // echo csrf_token();
     echo "<b>Roles: </b>" . "<pre>";
-    print_r( $roles->toArray());
+    print_r($roles->toArray());
     echo "</pre> <br/>" . "<br/>" . "<b>Users: </b>" . "<pre>";
-    print_r($users->toArray());
+    print_r($employees->toArray());
     echo "</pre> <br/>" . "<br/>" . "<b>Computers: </b>" . "<pre>";
     print_r($computers->toArray());
     echo "</pre> <br/>" . "<br/>" . "<b>Competence Centers: </b>" . "<pre>";
