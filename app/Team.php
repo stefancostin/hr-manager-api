@@ -11,7 +11,7 @@ class Team extends Model
 
     protected $fillable = [
         'competence_center_id',
-        'code ',
+        'code',
         'name'
     ];
 

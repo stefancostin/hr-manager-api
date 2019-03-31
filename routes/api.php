@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/employees', function (Request $request) {
-    return $request->employee();
-});
+Route::resource('competence-centers', 'CompetenceCenterController')->only(["index", "store", "show", "update", "destroy"]);
+
+Route::resource('computers', 'ComputerController')->only(["index", "store", "show", "update", "destroy"]);
+
+Route::resource('employees', 'EmployeeController')->only(["index", "store", "show", "update", "destroy"]);
+
+Route::resource('projects', 'ProjectController')->only(["index", "store", "show", "update", "destroy"]);
+
+Route::resource('roles', 'RoleController')->only(["index", "store", "show", "update", "destroy"]);
+
+Route::resource('teams', 'TeamController')->only(["index", "store", "show", "update", "destroy"]);
+

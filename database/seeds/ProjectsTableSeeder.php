@@ -13,21 +13,21 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         $projects = [
-            ['id' => 1, 'code' => 'ubz', 'name' => 'Monitoring'],
+            ['id' => 1, 'code' => 'ubz', 'name' => 'Underwriting Technical Evaluation'],
             ['id' => 2, 'code' => 'uam', 'name' => 'Underwriting Asset Management'],
             ['id' => 3, 'code' => 'prz', 'name' => 'Perizie Revolution'],
-            ['id' => 4, 'code' => 'wrk', 'name' => 'Workout'],
-            ['id' => 5, 'code' => 'crd', 'name' => 'Credits'],
-            ['id' => 6, 'code' => 'bim', 'name' => 'Building Model'],
-            ['id' => 7, 'code' => 'pam', 'name' => 'PAM'],
-            ['id' => 8, 'code' => 'wpa', 'name' => 'WPA'],
-            ['id' => 9, 'code' => 'dst', 'name' => 'DST'],
-            ['id' => 10, 'code' => 'uip', 'name' => 'UIP'],
-            ['id' => 11, 'code' => 'dfg', 'name' => 'DFG'],
-            ['id' => 12, 'code' => 'bnm', 'name' => 'BNM'],
-            ['id' => 13, 'code' => 'erp', 'name' => 'ERP'],
-            ['id' => 14, 'code' => 'crm', 'name' => 'CRM'],
-            ['id' => 15, 'code' => 'jkl', 'name' => 'JKL'],
+            ['id' => 4, 'code' => 'xdt', 'name' => 'XFrame Development Toolkit'],
+            ['id' => 5, 'code' => 'vpm', 'name' => 'Vendor Performance Monitoring'],
+            ['id' => 6, 'code' => 'woc', 'name' => 'Ordering System for Telecommunication'],
+            ['id' => 7, 'code' => 'owa', 'name' => 'Open Wave Architecture'],
+            ['id' => 8, 'code' => 'ucb', 'name' => 'Electronic Banking'],
+            ['id' => 9, 'code' => 'wrc', 'name' => 'Weekly Release Calendar'],
+            ['id' => 10, 'code' => 'amg', 'name' => 'Asset Management'],
+            ['id' => 11, 'code' => 'prs', 'name' => 'Preproduction Environment Scheduling'],
+            ['id' => 12, 'code' => 'opm', 'name' => 'Operational Performance Management'],
+            ['id' => 13, 'code' => 'igt', 'name' => 'Information Governance Tool'],
+            ['id' => 14, 'code' => 'erp', 'name' => 'Enterprise Resource Planning'],
+            ['id' => 15, 'code' => 'crm', 'name' => 'Customer Rrelationship Manager'],
         ];
 
         foreach ($projects as $project) {

@@ -17,6 +17,8 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('description')->nullable();
+            $table->boolean('is_management')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

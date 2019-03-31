@@ -12,6 +12,7 @@ class CompetenceCenter extends Model
     protected $fillable = [
         'code',
         'city',
+        'country'
     ];
 
     /**

@@ -17,5 +17,6 @@ use Faker\Generator as Faker;
 //     return [
 //         'code' => $faker->stateAbbr,
 //         'city' => $faker->city
+//         'country' => $faker->stateAbbr
 //     ];
 // });

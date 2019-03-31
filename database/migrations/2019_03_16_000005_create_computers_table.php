@@ -15,7 +15,7 @@ class CreateComputersTable extends Migration
     {
         Schema::create('computers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('employee_id')->unsigned();
+            $table->integer('employee_id')->unsigned()->nullable();
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->string('code')->unique();
             $table->string('operating_system');
