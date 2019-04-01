@@ -16,7 +16,12 @@ class ComputerController extends Controller
     public function index()
     {
         $computers = Computer::all();
-        return response()->json($computers);
+
+        if ($computers) {
+            return response()->json(['data' => $computers, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Collection of all computers not found.'], 404);
     }
 
     /**

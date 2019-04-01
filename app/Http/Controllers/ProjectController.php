@@ -16,7 +16,12 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return response()->json($projects);
+
+        if ($projects) {
+            return response()->json(['data' => $projects, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Collection of all projects not found.'], 404);
     }
 
     /**
@@ -28,6 +33,11 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         // Validation done through ProjectRequest
+
+        $newProject = [
+            'code' => $request->code,
+            'name' => $request->name
+        ];
     }
 
     /**

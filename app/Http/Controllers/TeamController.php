@@ -16,7 +16,12 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return response()->json($teams);
+
+        if ($teams) {
+            return response()->json(['data' => $teams, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Collection of all teams not found.'], 404);
     }
 
     /**

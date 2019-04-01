@@ -28,7 +28,7 @@ class EmployeeRequest extends FormRequest
             'team_id' => 'integer|exists:teams,id',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:employees|max:255',
+            'email' => 'required|email|unique:employees,email,'.$this->id.'|max:255',
             'hiring_date' => 'required|date',
         ];
     }

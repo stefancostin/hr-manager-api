@@ -14,4 +14,6 @@ class ProjectTeam extends Pivot
         'team_id'
     ];
 
+    public $timestamps = false;
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RoleRequest extends FormRequest
 {
@@ -24,10 +25,9 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:roles|max:255',
+            'code' => 'required|string|unique:roles,code,'.$this->id.'|max:255',
             'name' => 'required|string|max:255',
             'description' => 'string|max:255',
-            'isManagement' => 'boolean'
         ];
     }
 }

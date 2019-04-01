@@ -22,7 +22,7 @@ class EmployeeController extends Controller
             return response()->json(['data' => $employees, 'success' => true], 200);
         }
 
-        return response()->json(['success' => false], 404);
+        return response()->json(['success' => false, 'message' => 'Collection of all employees not found.'], 404);
     }
 
     /**
@@ -34,7 +34,8 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         // Basic validation done through EmployeeRequest
-        $newEmployee = [
+
+        $data = [
             'role_id' => $request->role_id,
             'team_id' => $request->team_id,
             'first_name' => $request->first_name,
@@ -43,8 +44,7 @@ class EmployeeController extends Controller
             'hiring_date' => $request->hiring_date,
         ];
 
-        Employee::create($newEmployee);
-        // dd(1);
+        $newEmployee = Employee::create($data);
 
         return response()->json(['data' => $newEmployee, 'success' => true], 200);
     }
@@ -63,7 +63,7 @@ class EmployeeController extends Controller
             return response()->json(['data' => $employee, 'success' => true], 200);
         }
 
-        return response()->json(['success' => false], 404);
+        return response()->json(['success' => false, 'message' => 'Employee not found.'], 404);
     }
 
     /**
@@ -81,7 +81,7 @@ class EmployeeController extends Controller
 
         if($employee) {
 
-            $updatedEmployee = [
+            $data = [
                 'role_id' => $request->role_id,
                 'team_id' => $request->team_id,
                 'first_name' => $request->first_name,
@@ -90,12 +90,12 @@ class EmployeeController extends Controller
                 'hiring_date' => $request->hiring_date
             ];
 
-            Employee::where('id', $id)->update($updatedEmployee);
+            $employee->update($data);
 
-            return response()->json(['data' => $updatedEmployee, 'success' => true], 200);
+            return response()->json(['data' => $employee, 'success' => true], 200);
         }
 
-        return response()->json(['success' => false], 404);
+        return response()->json(['success' => false, 'message' => 'Employee not found.'], 404);
     }
 
     /**
@@ -113,6 +113,6 @@ class EmployeeController extends Controller
             return response()->json(['success' => true], 200);
         }
 
-        return response()->json(['success' => false], 404);
+        return response()->json(['success' => false, 'message' => 'Employee not found.'], 404);
     }
 }

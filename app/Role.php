@@ -16,6 +16,10 @@ class Role extends Model
         'is_management'
     ];
 
+    protected $attributes = [
+        'is_management' => false
+    ];
+
     /**
      * Get Employees for current Role
      * (One-to-Many)

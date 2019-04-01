@@ -16,7 +16,12 @@ class CompetenceCenterController extends Controller
     public function index()
     {
         $competenceCenters = CompetenceCenter::all();
-        return response()->json($competenceCenters);
+
+        if ($competenceCenters) {
+            return response()->json(['data' => $competenceCenters, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Collection of all competence centers not found.'], 404);
     }
 
     /**

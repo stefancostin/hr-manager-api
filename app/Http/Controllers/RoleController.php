@@ -16,7 +16,12 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return response()->json($roles);
+
+        if ($roles) {
+            return response()->json(['data' => $roles, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Collection of all roles not found.'], 404);
     }
 
     /**
@@ -28,6 +33,17 @@ class RoleController extends Controller
     public function store(RoleRequest $request)
     {
         // Validation done through RoleRequest
+
+        $data = [
+            'code' => strtoupper($request->code),
+            'name' => $request->name,
+            'description' => $request->description,
+            'is_management' => isset($request->is_management) ? $request->is_management : false
+        ];
+
+        $newRole = Role::create($data);
+
+        return response()->json(['data' => $newRole, 'success' => true], 200);
     }
 
     /**
@@ -38,7 +54,13 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+
+        if($role) {
+            return response()->json(['data' => $role, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Role not found.'], 404);
     }
 
     /**
@@ -51,6 +73,24 @@ class RoleController extends Controller
     public function update(RoleRequest $request, $id)
     {
         // Validation done through RoleRequest
+
+        $role = Role::find($id);
+
+        if($role) {
+
+            $data = [
+                'code' => strtoupper($request->code),
+                'name' => $request->name,
+                'description' => $request->description,
+                'is_management' => isset($request->is_management) ? $request->is_management : false
+            ];
+
+            $role->update($data);
+
+            return response()->json(['data' => $role, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Role not found.'], 404);
     }
 
     /**
@@ -61,6 +101,13 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+
+        if ($role) {
+            $role->delete();
+            return response()->json(['success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Role not found.'], 404);
     }
 }
