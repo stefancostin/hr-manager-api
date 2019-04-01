@@ -33,6 +33,16 @@ class CompetenceCenterController extends Controller
     public function store(CompetenceCenterRequest $request)
     {
         // Validation done through CompetenceCenterRequest
+
+        $data = [
+            'code' => strtoupper($request->code),
+            'city' => $request->city,
+            'country' => $request->country
+        ];
+
+        $competenceCenter = CompetenceCenter::create($data);
+
+        return response()->json(['data' => $competenceCenter, 'success' => true], 200);
     }
 
     /**
@@ -43,7 +53,13 @@ class CompetenceCenterController extends Controller
      */
     public function show($id)
     {
-        //
+        $competenceCenter = CompetenceCenter::find($id);
+
+        if ($competenceCenter) {
+            return response()->json(['data' => $competenceCenter, 'success' => true], 202);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Competence Center not found.'], 404);
     }
 
     /**
@@ -56,6 +72,23 @@ class CompetenceCenterController extends Controller
     public function update(CompetenceCenterRequest $request, $id)
     {
         // Validation done through CompetenceCenterRequest
+
+        $competenceCenter = CompetenceCenter::find($id);
+
+        if ($competenceCenter) {
+
+            $data = [
+                'code' => strtoupper($request->code),
+                'city' => $request->city,
+                'country' => $request->country
+            ];
+
+            $competenceCenter->update($data);
+
+            return response()->json(['data' => $competenceCenter, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Competence Center not found.'], 404);
     }
 
     /**
@@ -66,6 +99,13 @@ class CompetenceCenterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $competenceCenter = CompetenceCenter::find($id);
+
+        if ($competenceCenter) {
+            $competenceCenter->delete();
+            return response()->json(['success' => true, 'message' => 'Competence Center deleted successfully.'], 200);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Competence Center not found.'], 404);
     }
 }

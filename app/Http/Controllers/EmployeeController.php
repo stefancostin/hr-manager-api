@@ -110,7 +110,7 @@ class EmployeeController extends Controller
 
         if ($employee) {
             $employee->delete();
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => true, 'message' => 'Employee deleted successfully'], 200);
         }
 
         return response()->json(['success' => false, 'message' => 'Employee not found.'], 404);

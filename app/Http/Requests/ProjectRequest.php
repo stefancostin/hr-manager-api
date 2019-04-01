@@ -24,7 +24,7 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:roles|max:255',
+            'code' => 'required|string|unique:projects,code,'.$this->id.'|max:255',
             'name' => 'required|string|max:255'
         ];
     }

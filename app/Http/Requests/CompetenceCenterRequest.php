@@ -24,7 +24,7 @@ class CompetenceCenterRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:computers|max:255',
+            'code' => 'required|string|unique:competence_centers,code,'.$this->id.'|max:255',
             'city' => 'required|string|max:255',
             'country' => 'required|string|max:255'
         ];

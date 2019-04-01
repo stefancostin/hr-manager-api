@@ -25,7 +25,7 @@ class TeamRequest extends FormRequest
     {
         return [
             'competenceCenterId' => 'required|integer|exists:competence_centers,id',
-            'code' => 'required|string|unique:computers|max:255',
+            'code' => 'required|string|unique:teams,code,'.$this->id.'|max:255',
             'name' => 'required|string|max:255'
         ];
     }

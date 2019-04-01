@@ -105,7 +105,7 @@ class RoleController extends Controller
 
         if ($role) {
             $role->delete();
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => true, 'Role deleted successfully.'], 200);
         }
 
         return response()->json(['success' => false, 'message' => 'Role not found.'], 404);
