@@ -15,6 +15,12 @@ class CompetenceCenter extends Model
         'country'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     /**
      * Get Teams assigned to Competence Center
      * (One-to-Many)

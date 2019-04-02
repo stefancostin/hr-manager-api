@@ -20,6 +20,12 @@ class Role extends Model
         'is_management' => false
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     /**
      * Get Employees for current Role
      * (One-to-Many)

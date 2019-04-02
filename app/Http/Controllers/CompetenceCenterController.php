@@ -40,9 +40,9 @@ class CompetenceCenterController extends Controller
             'country' => $request->country
         ];
 
-        $competenceCenter = CompetenceCenter::create($data);
+        $newCompetenceCenter = CompetenceCenter::create($data);
 
-        return response()->json(['data' => $competenceCenter, 'success' => true], 200);
+        return response()->json(['data' => $newCompetenceCenter, 'success' => true], 200);
     }
 
     /**

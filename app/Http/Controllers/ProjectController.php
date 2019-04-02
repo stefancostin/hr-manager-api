@@ -34,10 +34,14 @@ class ProjectController extends Controller
     {
         // Validation done through ProjectRequest
 
-        $newProject = [
-            'code' => $request->code,
+        $data = [
+            'code' => strtoupper($request->code),
             'name' => $request->name
         ];
+
+        $newProject = Project::create($data);
+
+        return response()->json(['data' => $newProject, 'success' => false], 200);
     }
 
     /**
@@ -48,7 +52,13 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $teamproject = Project::find($id);
+
+        if($project) {
+            return response()->json(['data' => $project, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
     }
 
     /**
@@ -61,6 +71,22 @@ class ProjectController extends Controller
     public function update(ProjectRequest $request, $id)
     {
         // Validation done through ProjectRequest
+
+        $project = Project::find($id);
+
+        if ($project) {
+
+            $data = [
+                'code' => strtoupper($request->code),
+                'name' => $request->name
+            ];
+
+            $project->update($data);
+
+            return response()->json(['data' => $project, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
     }
 
     /**
@@ -71,6 +97,13 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+
+        if ($project) {
+            $project->delete();
+            return response()->json(['success' => true, 'message' => 'Project deleted successfully'], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
     }
 }

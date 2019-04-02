@@ -18,6 +18,12 @@ class Employee extends Model
         'hiring_date'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     /**
      * Get Computer that belongs to current Employee
      * (One-to-One)

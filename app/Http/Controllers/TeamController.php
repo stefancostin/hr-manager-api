@@ -33,6 +33,16 @@ class TeamController extends Controller
     public function store(TeamRequest $request)
     {
         // Validation done through TeamRequest
+
+        $data = [
+            // 'competence_center_id',
+            'code' => strtoupper($request->code),
+            'name' => $request->name
+        ];
+
+        $newTeam = Team::create($data);
+
+        return response()->json(['data' => $newTeam, 'success' => false], 200);
     }
 
     /**
@@ -43,7 +53,13 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //
+        $team = Team::find($id);
+
+        if($team) {
+            return response()->json(['data' => $team, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Team not found.'], 404);
     }
 
     /**
@@ -56,6 +72,23 @@ class TeamController extends Controller
     public function update(TeamRequest $request, $id)
     {
         // Validation done through TeamRequest
+
+        $team = Team::find($id);
+
+        if($team) {
+
+            $data = [
+                // 'competence_center_id',
+                'code' => strtoupper($request->code),
+                'name' => $request->name
+            ];
+
+            $team->update($data);
+
+            return response()->json(['data' => $team, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Team not found.'], 404);
     }
 
     /**
@@ -66,6 +99,13 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $team = Team::find($id);
+
+        if ($team) {
+            $team->delete();
+            return response()->json(['success' => true, 'message' => 'Team deleted successfully'], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Team not found.'], 404);
     }
 }

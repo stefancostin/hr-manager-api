@@ -14,6 +14,12 @@ class Project extends Model
         'name'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     /**
      * Get Teams assigned to current Project
      * (Many-to-Many)

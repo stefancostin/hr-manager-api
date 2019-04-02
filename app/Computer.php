@@ -18,6 +18,12 @@ class Computer extends Model
         'hdd'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     /**
      * Get Employee that owns current Computer
      * (One-to-One)

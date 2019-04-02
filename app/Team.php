@@ -15,6 +15,12 @@ class Team extends Model
         'name'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     /**
      * Get Employees assigned to current Team
      * (One-to-Many)
