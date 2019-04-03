@@ -40,8 +40,9 @@ class ProjectController extends Controller
         ];
 
         $newProject = Project::create($data);
+        $newProject->teams()->attach($request->teams);
 
-        return response()->json(['data' => $newProject, 'success' => false], 200);
+        return response()->json(['data' => $newProject->with('teams')->find($newProject->id), 'success' => true], 200);
     }
 
     /**
@@ -82,8 +83,9 @@ class ProjectController extends Controller
             ];
 
             $project->update($data);
+            $project->teams()->sync($request->teams);
 
-            return response()->json(['data' => $project, 'success' => true], 200);
+            return response()->json(['data' => $project->with('teams')->find($project->id), 'success' => true], 200);
         }
 
         return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
