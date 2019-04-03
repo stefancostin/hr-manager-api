@@ -24,4 +24,3 @@ Route::resource('projects', 'ProjectController')->only(["index", "store", "show"
 Route::resource('roles', 'RoleController')->only(["index", "store", "show", "update", "destroy"]);
 
 Route::resource('teams', 'TeamController')->only(["index", "store", "show", "update", "destroy"]);
-

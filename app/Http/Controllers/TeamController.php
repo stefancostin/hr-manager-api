@@ -15,7 +15,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
+        $teams = Team::with(['competenceCenter:id,code', 'projects'])->get();
 
         if ($teams) {
             return response()->json(['data' => $teams, 'success' => true], 200);
@@ -35,14 +35,15 @@ class TeamController extends Controller
         // Validation done through TeamRequest
 
         $data = [
-            // 'competence_center_id',
+            'competence_center_id' => $request->competence_center_id,
             'code' => strtoupper($request->code),
-            'name' => $request->name
+            'name' => $request->name,
         ];
 
         $newTeam = Team::create($data);
+        $newTeam->projects()->attach($request->projects);
 
-        return response()->json(['data' => $newTeam, 'success' => false], 200);
+        return response()->json(['data' => $newTeam->with(['competenceCenter:id,code', 'projects'])->find($newTeam->id), 'success' => true], 200);
     }
 
     /**
@@ -53,7 +54,7 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::find($id);
+        $team = Team::with(['competenceCenter:id,code', 'projects'])->find($id);
 
         if($team) {
             return response()->json(['data' => $team, 'success' => true], 200);
@@ -78,14 +79,15 @@ class TeamController extends Controller
         if($team) {
 
             $data = [
-                // 'competence_center_id',
+                'competence_center_id' => $request->competence_center_id,
                 'code' => strtoupper($request->code),
                 'name' => $request->name
             ];
 
             $team->update($data);
+            $team->projects()->sync($request->projects);
 
-            return response()->json(['data' => $team, 'success' => true], 200);
+            return response()->json(['data' => $team->with(['competenceCenter:id,code','projects'])->find($team->id), 'success' => true], 200);
         }
 
         return response()->json(['success' => false, 'message' => 'Team not found.'], 404);
@@ -108,4 +110,5 @@ class TeamController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Team not found.'], 404);
     }
+
 }

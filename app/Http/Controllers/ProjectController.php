@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('teams')->get();
 
         if ($projects) {
             return response()->json(['data' => $projects, 'success' => true], 200);
@@ -52,7 +52,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $teamproject = Project::find($id);
+        $project = Project::with('teams')->find($id);
 
         if($project) {
             return response()->json(['data' => $project, 'success' => true], 200);
@@ -106,4 +106,5 @@ class ProjectController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
     }
+
 }
