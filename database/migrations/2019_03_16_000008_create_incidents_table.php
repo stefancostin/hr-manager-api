@@ -23,6 +23,7 @@ class CreateIncidentsTable extends Migration
             $table->string('subject');
             $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

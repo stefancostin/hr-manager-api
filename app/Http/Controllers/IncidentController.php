@@ -16,6 +16,7 @@ class IncidentController extends Controller
      */
     public function index()
     {
+
         $incidents = Incident::with(['project:id,code', 'employee:id,first_name,last_name'])->get();
 
         if ($incidents) {
