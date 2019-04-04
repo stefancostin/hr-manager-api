@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::with(['role:id,code,name', 'team:id,code'])->get();
 
         if ($employees) {
             return response()->json(['data' => $employees, 'success' => true], 200);
@@ -57,7 +57,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::with(['role:id,code,name', 'team:id,code'])->find($id);
 
         if ($employee) {
             return response()->json(['data' => $employee, 'success' => true], 200);

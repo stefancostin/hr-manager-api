@@ -19,6 +19,8 @@ Route::resource('computers', 'ComputerController')->only(["index", "store", "sho
 
 Route::resource('employees', 'EmployeeController')->only(["index", "store", "show", "update", "destroy"]);
 
+Route::resource('incidents', 'IncidentController')->only(["index", "store", "show", "update", "destroy"]);
+
 Route::resource('projects', 'ProjectController')->only(["index", "store", "show", "update", "destroy"]);
 
 Route::resource('roles', 'RoleController')->only(["index", "store", "show", "update", "destroy"]);
