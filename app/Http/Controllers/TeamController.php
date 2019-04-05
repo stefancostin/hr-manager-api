@@ -15,7 +15,10 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::with(['competenceCenter:id,code', 'projects'])->get();
+        $teams = Team::with([
+            'competenceCenter:id,code',
+            'employees',
+            'projects'])->get();
 
         if ($teams) {
             return response()->json(['data' => $teams, 'success' => true], 200);
@@ -43,7 +46,7 @@ class TeamController extends Controller
         $newTeam = Team::create($data);
         $newTeam->projects()->attach($request->projects);
 
-        return response()->json(['data' => $newTeam->with(['competenceCenter:id,code', 'projects'])->find($newTeam->id), 'success' => true], 200);
+        return response()->json(['data' => $newTeam->with(['competenceCenter:id,code', 'employees', 'projects'])->find($newTeam->id), 'success' => true], 200);
     }
 
     /**
@@ -54,7 +57,10 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::with(['competenceCenter:id,code', 'projects'])->find($id);
+        $team = Team::with([
+            'competenceCenter:id,code',
+            'employees',
+            'projects'])->find($id);
 
         if($team) {
             return response()->json(['data' => $team, 'success' => true], 200);
@@ -87,7 +93,7 @@ class TeamController extends Controller
             $team->update($data);
             $team->projects()->sync($request->projects);
 
-            return response()->json(['data' => $team->with(['competenceCenter:id,code','projects'])->find($team->id), 'success' => true], 200);
+            return response()->json(['data' => $team->with(['competenceCenter:id,code', 'employees', 'projects'])->find($team->id), 'success' => true], 200);
         }
 
         return response()->json(['success' => false, 'message' => 'Team not found.'], 404);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Employee;
 
 class IncidentRequest extends FormRequest
 {
@@ -30,5 +31,40 @@ class IncidentRequest extends FormRequest
             'subject' => 'required|string|max:255',
             'description' => 'required|string|max:255'
         ];
+    }
+
+    /**
+     * Used to validate isEmployeeAssignedToProject().
+     *
+     * @param  \Illuminate\Validation\Validator  $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if (!$this->isEmployeeAssignedToProject()) {
+                $validator->errors()->add('employee_id', 'Employee is not assigned to the requested project!');
+            }
+        });
+    }
+
+    /**
+     * Checks if employee is assigned to the requested project.
+     *
+     * @return boolean
+     */
+    private function isEmployeeAssignedToProject()
+    {
+        $activeProjects = Employee::with('team.projects')
+            ->find($this->employee_id)
+            ->team->projects;
+
+        foreach ($activeProjects as $project) {
+            if ($project->id === $this->project_id) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
