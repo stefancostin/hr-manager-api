@@ -26,3 +26,7 @@ Route::resource('projects', 'ProjectController')->only(["index", "store", "show"
 Route::resource('roles', 'RoleController')->only(["index", "store", "show", "update", "destroy"]);
 
 Route::resource('teams', 'TeamController')->only(["index", "store", "show", "update", "destroy"]);
+
+Route::get('employees-without-computer', 'EmployeeController@withoutComputer');
+
+Route::get('project-members/{project}', 'ProjectController@projectMembers');

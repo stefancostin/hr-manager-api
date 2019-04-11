@@ -24,7 +24,7 @@ class ComputerRequest extends FormRequest
     public function rules()
     {
         return [
-            'employee_id' => 'sometimes|integer|exists:employees,id|unique:computers,employee_id,'.$this->id,
+            'employee_id' => 'nullable|sometimes|integer|exists:employees,id|unique:computers,employee_id,'.$this->id,
             'code' => 'required|string|unique:computers,code,'.$this->id.'|max:255',
             'operating_system' => 'required|string|max:255',
             'cpu' => 'required|string|max:255',

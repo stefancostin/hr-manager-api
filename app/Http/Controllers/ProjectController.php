@@ -109,4 +109,27 @@ class ProjectController extends Controller
         return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
     }
 
+    /**
+     * Display a listing of all the employees assigned to project.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function projectMembers(Project $project)
+    {
+        if ($project) {
+            $projectTeams = $project->teams;
+            $projectMembers = [];
+
+            foreach($projectTeams as $projectTeam) {
+                foreach($projectTeam->employees as $member) {
+                    array_push($projectMembers, $member);
+                }
+            }
+
+            return response()->json(['data' => $projectMembers, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Project not found.'], 404);
+    }
+
 }

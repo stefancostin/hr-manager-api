@@ -76,4 +76,5 @@ class EmployeeRequest extends FormRequest
 
         return empty($duplicateMgmtEmployee->toArray());
     }
+
 }

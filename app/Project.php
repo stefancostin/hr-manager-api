@@ -27,4 +27,8 @@ class Project extends Model
     public function teams() {
         return $this->belongsToMany('App\Team');
     }
+
+    public function employees() {
+        return $this->hasManyThrough('App\Team', 'App\Employee');
+    }
 }

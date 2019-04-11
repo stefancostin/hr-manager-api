@@ -115,4 +115,22 @@ class EmployeeController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Employee not found.'], 404);
     }
+
+    /**
+     * Display a listing of the employees that
+     * don't have a computer assigned to them.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function withoutComputer()
+    {
+        $employees = Employee::doesnthave('computer')->get();
+
+        if ($employees) {
+            return response()->json(['data' => $employees, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Collection of employees without computers not found.'], 404);
+    }
+
 }
