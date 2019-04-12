@@ -110,6 +110,7 @@ class TeamController extends Controller
         $team = Team::find($id);
 
         if ($team) {
+            $team->projects()->detach();
             $team->delete();
             return response()->json(['success' => true, 'message' => 'Team deleted successfully'], 200);
         }

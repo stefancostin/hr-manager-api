@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33b103b066b1a18871ac08a171bef46a",
+    "content-hash": "5f28ecf1d4f93e08dd5f00b08f0aed75",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -365,6 +365,48 @@
                 "trusted proxy"
             ],
             "time": "2019-01-10T14:06:47+00:00"
+        },
+        {
+            "name": "iatstuti/laravel-cascade-soft-deletes",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michaeldyrynda/laravel-cascade-soft-deletes.git",
+                "reference": "d7d68c84ccb37b0f2b395be3dba8c8332455f385"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michaeldyrynda/laravel-cascade-soft-deletes/zipball/d7d68c84ccb37b0f2b395be3dba8c8332455f385",
+                "reference": "d7d68c84ccb37b0f2b395be3dba8c8332455f385",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0",
+                "illuminate/events": "~5.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "utility",
+            "autoload": {
+                "psr-4": {
+                    "Iatstuti\\Database\\Support\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dyrynda",
+                    "email": "michael@dyrynda.com.au",
+                    "homepage": "https://dyrynda.com.au"
+                }
+            ],
+            "description": "Cascading deletes for Eloquent models that implement soft deletes",
+            "time": "2018-11-01T04:34:30+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

@@ -102,6 +102,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
 
         if ($project) {
+            $project->teams()->detach();
             $project->delete();
             return response()->json(['success' => true, 'message' => 'Project deleted successfully'], 200);
         }

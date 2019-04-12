@@ -20,6 +20,10 @@ class Project extends Model
         'deleted_at'
     ];
 
+    protected $cascadeDeletes = [
+        'incidents',
+    ];
+
     /**
      * Get Teams assigned to current Project
      * (Many-to-Many)
@@ -28,7 +32,11 @@ class Project extends Model
         return $this->belongsToMany('App\Team');
     }
 
-    public function employees() {
-        return $this->hasManyThrough('App\Team', 'App\Employee');
+    /**
+     * Get Incidents assigned to current Project
+     * (Many-to-Many)
+     */
+    public function incident() {
+        return $this->hasMany('App\Incidents');
     }
 }
