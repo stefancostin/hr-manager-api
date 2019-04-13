@@ -41,7 +41,8 @@ class IncidentController extends Controller
             'employee_id' => $request->employee_id,
             'code' => $request->code,
             'subject' => $request->subject,
-            'description' => $request->description
+            'description' => $request->description,
+            'is_solved' => isset($request->is_solved) ? $request->is_solved : false
         ];
 
         $newIncident = Incident::create($data);
@@ -86,7 +87,8 @@ class IncidentController extends Controller
                 'employee_id' => $request->employee_id,
                 'code' => $request->code,
                 'subject' => $request->subject,
-                'description' => $request->description
+                'description' => $request->description,
+                'is_solved' => $request->isset($request->is_solved) ? $request->is_solved : false
             ];
 
             $incident->update($data);

@@ -22,6 +22,7 @@ class CreateIncidentsTable extends Migration
             $table->string('code');
             $table->string('subject');
             $table->string('description')->nullable();
+            $table->boolean('is_solved')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

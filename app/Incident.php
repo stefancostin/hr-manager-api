@@ -14,7 +14,8 @@ class Incident extends Model
         'employee_id',
         'code',
         'subject',
-        'description'
+        'description',
+        'is_solved'
     ];
 
     protected $hidden = [
