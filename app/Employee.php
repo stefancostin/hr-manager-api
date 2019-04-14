@@ -25,11 +25,19 @@ class Employee extends Model
     ];
 
     /**
-     * Get Computer that belongs to current Employee
+     * Get Computer that is assigned to current Employee
      * (One-to-One)
      */
     public function computer() {
         return $this->hasOne('App\Computer');
+    }
+
+    /**
+     * Get Incidents that are assigned to current Employee
+     * (One-to-Many)
+     */
+    public function incidents() {
+        return $this->hasMany('App\Incident');
     }
 
     /**

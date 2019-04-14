@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 use App\Employee;
 
 class EmployeeController extends Controller
@@ -73,7 +74,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EmployeeRequest $request, $id)
+    public function update(EmployeeUpdateRequest $request, $id)
     {
         // Validation done through EmployeeRequest
 

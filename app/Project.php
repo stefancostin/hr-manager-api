@@ -15,7 +15,6 @@ class Project extends Model
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
         'deleted_at'
     ];
@@ -36,7 +35,7 @@ class Project extends Model
      * Get Incidents assigned to current Project
      * (Many-to-Many)
      */
-    public function incident() {
-        return $this->hasMany('App\Incidents');
+    public function incidents() {
+        return $this->hasMany('App\Incident');
     }
 }

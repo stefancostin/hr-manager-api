@@ -30,3 +30,15 @@ Route::resource('teams', 'TeamController')->only(["index", "store", "show", "upd
 Route::get('employees-without-computer', 'EmployeeController@withoutComputer');
 
 Route::get('project-members/{project}', 'ProjectController@projectMembers');
+
+Route::get('statistics/team-activity', 'StatisticController@teamActivity');
+
+Route::get('statistics/project-activity', 'StatisticController@projectActivity');
+
+Route::get('statistics/total-incidents', 'StatisticController@totalIncidents');
+
+Route::get('statistics/assigned-employees', 'StatisticController@employeesAssignedToIncidents');
+
+Route::get('statistics/timeline-chart', 'StatisticController@timelineChart');
+
+Route::get('statistics/compare-chart', 'StatisticController@compareChart');
