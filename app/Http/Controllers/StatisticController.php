@@ -224,4 +224,30 @@ class StatisticController extends Controller
         return response()->json(['success' => false, 'message' => 'Collection of total and closed incidents not found.'], 404);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function summaryChart()
+    {
+        $totalEmployees = Employee::get()->count();
+        $totalProjects = Project::get()->count();
+        $closedIncidents = Incident::where('is_solved', true)->get()->count();
+        $openIncidents = Incident::where('is_solved', false)->get()->count();
+
+        $data = [];
+
+        array_push($data, ['title' => 'Open Incidents', 'value' => $openIncidents]);
+        array_push($data, ['title' => 'Closed Incidents', 'value' => $closedIncidents]);
+        array_push($data, ['title' => 'Employees', 'value' => $totalEmployees]);
+        array_push($data, ['title' => 'Projects', 'value' => $totalProjects]);
+
+        if ($data) {
+            return response()->json(['data' => $data, 'success' => true], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Collection of total and closed incidents not found.'], 404);
+    }
+
 }

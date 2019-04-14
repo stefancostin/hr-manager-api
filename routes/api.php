@@ -42,3 +42,5 @@ Route::get('statistics/assigned-employees', 'StatisticController@employeesAssign
 Route::get('statistics/timeline-chart', 'StatisticController@timelineChart');
 
 Route::get('statistics/compare-chart', 'StatisticController@compareChart');
+
+Route::get('statistics/summary-chart', 'StatisticController@summaryChart');
