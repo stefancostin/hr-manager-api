@@ -88,7 +88,7 @@ class IncidentController extends Controller
                 'code' => $request->code,
                 'subject' => $request->subject,
                 'description' => $request->description,
-                'is_solved' => $request->isset($request->is_solved) ? $request->is_solved : false
+                'is_solved' => isset($request->is_solved) ? $request->is_solved : false
             ];
 
             $incident->update($data);
