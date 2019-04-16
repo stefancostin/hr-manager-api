@@ -45,7 +45,7 @@ class EmployeeRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             if (!$this->assignToTeam()) {
-                $validator->errors()->add('role_id', 'Employee with the same management role already exists on this team!');
+                $validator->errors()->add('role_id', 'Employee with the same management role already exists on this team! You can not have a team with two managers of the same role.');
             }
         });
     }
